@@ -10,7 +10,6 @@ on:
     branches: [ master ]
 
 jobs:
- prepare:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,12 +25,9 @@ jobs:
         pip install flask yaml2 psycopg2
         sudo apt-get --yes install python3-psycopg2 curl
  
- Unit_test:
-
     - name: Run unittest
       run: |
         python test_show_result.py
-      needs: prepare
 
     - name: Build
       run: |
