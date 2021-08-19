@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Prject</title>
+</head>
+<p>Ordered by deaths:</p>
+<table border="1">
+  <tr>
+    <tr> <td><b>{{ tt1[0] }}</b></td> <td><b>{{ tt1[1] }}</b> </td> <td><b>{{ tt1[2] }}</b> </td> <td><b>{{ tt1[3] }}</b> </td><td><b>{{ tt1[4] }}</b> </td><td><b>{{ tt1[5] }}</b> 
+    {% for d2 in output1 %}
+    <tr> <td>{{ d2[0] }} </td> <td>{{ d2[1] }} </td> <td>{{ d2[2] }} </td><td>{{ d2[3] }} </td> <td>{{ d2[4] }} </td> <td>{{ d2[5] }} </td> 
+    {% endfor %}
+    <p> </p>
+  </table>
+  </html>
