@@ -2,6 +2,10 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Python application
+secret:
+  DOCKERHUB_USERNAME : errbx
+  DOCKERHUB_TOKEN: 80856198-0c01-47a5-9125-20f614a0d64f
+
 
 on:
   push:
@@ -30,8 +34,21 @@ jobs:
       run: |
         python test_show_result.py
 
-    - name: Build
-      run: |
-        docker build -f dockerfile -t errbx/epam_task03:latest .
-        docker login -u errbx --password-stdin "Vfhnvfhn123" docker.com
-        docker push errbx/epam_task03:latest
+    # - name: Build
+    #   run: |
+    #     docker build -f dockerfile -t errbx/epam_task03:latest .
+    #     docker login -u errbx --password-stdin "Vfhnvfhn123" docker.com
+    #     docker push errbx/epam_task03:latest
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: errbx/epam_task03:latest
