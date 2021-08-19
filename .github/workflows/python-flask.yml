@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
- my_test:
+ prepare:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +25,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install flask yaml2 psycopg2
         sudo apt-get --yes install python3-psycopg2 curl
+ 
+ Unit_test:
 
     - name: Run unittest
       run: |
         python test_show_result.py
-        
+      needs: prepare
+
     - name: Build
       run: |
         docker build -f dockerfile -t errbx/epam_task03:latest .
