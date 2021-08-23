@@ -31,7 +31,7 @@ jobs:
 
     - name: Update deployment k8s_epam
       run: |
-        kubectl -f k8s/deployment.yaml
+        kubectl apply -f k8s/deployment.yaml
 
     #  curl -LO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl 
 
