@@ -7,3 +7,15 @@
             #     docker build -f dockerfile -t errbx/epam_task03:latest .
     #     docker login -u errbx --password-stdin "Vfhnvfhn123" docker.com
     #     docker push errbx/epam_task03:latest
+
+
+
+  # Deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: Build
+  #   - name: Build and push
+  #     uses: docker/build-push-action@v2
+  #     with:
+  #       context: .
+  #       push: true
+  #       tags: errbx/epam_task04:latest
