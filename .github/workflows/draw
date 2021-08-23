@@ -7,8 +7,8 @@
             #     docker build -f dockerfile -t errbx/epam_task03:latest .
     #     docker login -u errbx --password-stdin "Vfhnvfhn123" docker.com
     #     docker push errbx/epam_task03:latest
-
-
+errbx
+1291d30f-9c5d-497f-ad16-10986bcbfda1
 
   # Deploy:
   #   runs-on: ubuntu-latest
