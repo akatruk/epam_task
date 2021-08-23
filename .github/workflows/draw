@@ -2,3 +2,8 @@
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
         sudo apt-get --yes install docker-ce
+
+
+            #     docker build -f dockerfile -t errbx/epam_task03:latest .
+    #     docker login -u errbx --password-stdin "Vfhnvfhn123" docker.com
+    #     docker push errbx/epam_task03:latest
