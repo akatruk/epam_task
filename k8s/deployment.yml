@@ -3,19 +3,19 @@ kind: Deployment
 metadata: 
   name: epam-task
   labels:
-    project: epam_task
+    project: epam-task
 spec:
   replicas: 3
   selector:
     matchLabels:
-     project: epam_task
+     project: epam-task
   template:
     metadata:
      labels:
-       project: epam_task
+       project: epam-task
     spec:
       containers:
-        - name: epam_task
+        - name: epam-task
           image: errbx/epum_task004:latest
           ports:
             - containerPort: 80
