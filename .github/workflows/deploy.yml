@@ -41,3 +41,5 @@ jobs:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
         args: kubernetes/${{ secrets.DOCKERHUB_USERNAME }}/epum_task004:latest
+
+        
