@@ -35,13 +35,14 @@ jobs:
       run: |
         python test_show_result.py
 
-  Build:
-    needs: unit_test
+  login:
     runs-on: ubuntu-latest
-    - name: Login to DockerHub
-      uses: docker/login-action@v1
-      with:
-          registry: registry.gitlab.com
+    needs: unit_test
+    steps:
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
