@@ -43,6 +43,7 @@ jobs:
 
   Deploy:
     name: deploy to cluster
+    needs: Build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
