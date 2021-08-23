@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  unit test:
+  Unit_test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -50,15 +50,15 @@ jobs:
   #     run: |
   #       python test_show_result.py
 
-  # Build:
-  #   needs: unit_test
-  #   runs-on: ubuntu-latest
-  #   - name: Login to DockerHub
-  #     uses: docker/login-action@v1
-  #     with:
-  #         registry: registry.gitlab.com
-  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
+  Build:
+    needs: unit_test
+    runs-on: ubuntu-latest
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+          registry: registry.gitlab.com
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
   # Deploy:
   #   runs-on: ubuntu-latest
