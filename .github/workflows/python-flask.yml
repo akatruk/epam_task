@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
- prepare:
+  prepare:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,6 +25,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flask yaml2 psycopg2
         sudo apt-get --yes install python3-psycopg2 curl
+  
+  Unit test:
 
     - name: Run unittest
       run: |
@@ -36,6 +38,7 @@ jobs:
     #     docker login -u errbx --password-stdin "Vfhnvfhn123" docker.com
     #     docker push errbx/epam_task03:latest
 
+  Build:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
@@ -45,7 +48,7 @@ jobs:
         # username: errbx
         # password: 4d919cfd-3e75-4a57-9da5-a292dd69b666
 
-
+  Deploy:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
