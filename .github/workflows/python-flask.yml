@@ -28,6 +28,7 @@ jobs:
   unit_test:
     needs: prepare
     runs-on: ubuntu-latest
+    steps:
     - name: Run unittest
       run: |
         python test_show_result.py
