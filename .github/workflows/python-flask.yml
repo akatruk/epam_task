@@ -41,6 +41,9 @@ jobs:
       with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+        # username: errbx
+        # password: 80856198-0c01-47a5-9125-20f614a0d64f
+
 
     - name: Build and push
       uses: docker/build-push-action@v2
