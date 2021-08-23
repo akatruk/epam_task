@@ -43,7 +43,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
         # username: errbx
-        # password: 80856198-0c01-47a5-9125-20f614a0d64f
+        # password: 4d919cfd-3e75-4a57-9da5-a292dd69b666
 
 
     - name: Build and push
