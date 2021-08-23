@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  prepare:
+  prepare_1:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,12 +16,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-      steps:
-      - name:
-        run: | 
-           python -m pip install --upgrade pip
-           pip install flask yaml2 psycopg2
-           sudo apt-get --yes install python3-psycopg2 curl
+  
+  prepare_2:
+    steps:
+    - name:
+      run: | 
+        python -m pip install --upgrade pip
+        pip install flask yaml2 psycopg2
+        sudo apt-get --yes install python3-psycopg2 curl
   
   unit_test:
     # needs: prepare
