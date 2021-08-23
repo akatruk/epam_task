@@ -36,9 +36,11 @@ jobs:
   Push_docker:
     runs-on: ubuntu-latest
     needs: Login
-    - name: Build and push
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: errbx/epam_task04:latest
+    steps:
+      - 
+        name: Build and push
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: errbx/epam_task04:latest
