@@ -21,7 +21,7 @@ jobs:
       run: |
         python test_show_result.py
 
-  Build/push:
+  Build and push:
     runs-on: ubuntu-latest
     needs: Unit_test
     steps:
