@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: epam_task
+  name: epam-task
   labels:
     project: epam_task
 spec:
