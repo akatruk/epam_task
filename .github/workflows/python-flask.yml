@@ -36,10 +36,21 @@ jobs:
         python test_show_result.py
 
   Build:
-    name: Login to DockerHub
     needs: unit_test
-    uses: docker/login-action@v1
-    with:
-        registry: registry.gitlab.com
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+          registry: registry.gitlab.com
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+  # Deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: Build
+  #   - name: Build and push
+  #     uses: docker/build-push-action@v2
+  #     with:
+  #       context: .
+  #       push: true
+  #       tags: errbx/epam_task04:latest
