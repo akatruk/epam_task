@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: idle-in
+  name: epam_task
   labels:
     project: epam_task
 spec:
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: epam_task
-          image: errbx/epam_task:0.0.1
+          image: errbx/epum_task004:latest
           ports:
             - containerPort: 80
