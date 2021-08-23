@@ -25,7 +25,8 @@ jobs:
         pip install flask yaml2 psycopg2
         sudo apt-get --yes install python3-psycopg2 curl
   
-  Unit_test:
+  unit_test:
+    needs: prepare
     runs-on: ubuntu-latest
     - name: Run unittest
       run: |
