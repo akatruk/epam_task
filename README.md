@@ -12,4 +12,5 @@ test_show_result.py
 unittest: check to database PostgreSQL connectivity
 
 docker build -f dockerfile -t show_result .
-docker run -d -p 80:80 show_result2 --name idle --network="host"
+docker run -d -p 80:80 errbx/epum_task004:latest --name idle --network="host"
+
