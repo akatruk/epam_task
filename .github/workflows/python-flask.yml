@@ -39,12 +39,12 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
-        username: errbx
-        password: 80856198-0c01-47a5-9125-20f614a0d64f
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
-        tags: errbx/epam_task03:latest
+        tags: errbx/epam_task04:latest

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: idle-in
+  labels:
+    project: epam_task
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     project: epam_task
+  template:
+    metadata:
+     labels:
+       project: epam_task
+    spec:
+      containers:
+        - name: epam_task
+          image: errbx/epam_task:0.0.1
+          ports:
+            - containerPort: 80
