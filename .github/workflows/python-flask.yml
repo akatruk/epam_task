@@ -66,12 +66,6 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    # - name: helm chart install
-    #   run: |
-    #     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-    #     chmod 700 get_helm.sh
-    #     ./get_helm.sh
-
     - name: Update config k8s_epam
       run: |
         aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
@@ -79,7 +73,7 @@ jobs:
     - name: Upgrade release
       uses: hiberbee/github-action-helm@latest
       with:
-        helm-command: upgrade epam-app app-HelmChart/
+        helm-command: upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
     
     # - name: Helm Chart update
     #   run: |
@@ -100,3 +94,8 @@ jobs:
     #   run: |
     #     kubectl apply -f k8s/service.yml
 
+    # - name: helm chart install
+    #   run: |
+    #     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    #     chmod 700 get_helm.sh
+    #     ./get_helm.sh
