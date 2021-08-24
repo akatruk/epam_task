@@ -75,9 +75,14 @@ jobs:
         chmod 700 get_helm.sh
         ./get_helm.sh
 
+    - name: Install release
+      uses: hiberbee/github-action-helm@latest
+      with:
+        helm-command: upgrade --install --dry-run nginx test/charts/nginx
+    
     - name: Helm Chart update
       run: |
-        helm update epam-app app-HelmChart/ --set container.image=errbx/epam_task:latest
+        helm upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:latest
 
   #   - name: Configure k8s_epam
   #     run: |
