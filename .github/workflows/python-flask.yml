@@ -42,7 +42,7 @@ jobs:
       #   name: print
       #   run: |
       #    echo errbx/epam:$IMAGE_TAG
-      -
+      
         name: Build and push to Github regestry
         uses: docker/build-push-action@v2
         with:
@@ -69,6 +69,10 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Helm Chart update
+      run: |
+        helm update epam-app app-HelmChart/ --set container.image=${{ secrets.DOCKERHUB_USERNAME }}/epam_task:latest
+
   #   - name: Configure k8s_epam
   #     run: |
   #       aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
@@ -90,6 +94,3 @@ jobs:
     #     chmod 700 get_helm.sh
     #     ./get_helm.sh
 
-    - name: Helm Chart update
-      run: |
-        helm update epam-app app-HelmChart/ --set container.image=${{ secrets.DOCKERHUB_USERNAME }}/epam_task:latest
