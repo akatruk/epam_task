@@ -23,6 +23,7 @@ jobs:
         python test_show_result.py
 
   Build:
+    name: Build and push to Docker hub registry
     runs-on: ubuntu-latest
     needs: Unit
     steps:
@@ -43,7 +44,7 @@ jobs:
           tags: errbx/epam_task:latest
 
   Deploy:
-    name: Deploy to EKS cluster
+    name: Deploy from Docker hub registry
     needs: Build
     runs-on: ubuntu-latest
     steps:
