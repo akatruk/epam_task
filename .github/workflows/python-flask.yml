@@ -36,8 +36,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push to Github regestry
-        env:
-          IMAGE_TAG: {{ github.sha }}
+        # env:
+        #   IMAGE_TAG: {{ github.sha }}
         uses: docker/build-push-action@v2
         with:
           context: .
