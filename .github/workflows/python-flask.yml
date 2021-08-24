@@ -39,6 +39,10 @@ jobs:
         run: |
          echo "IMAGE_TAG=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       -
+        name: print
+        run: |
+         echo $IMAGE_TAG
+      -
         name: Build and push to Github regestry
         # env:
         #   IMAGE_TAG: {{ github.sha_short }}
