@@ -24,6 +24,7 @@ jobs:
 
   Build:
     runs-on: ubuntu-latest
+    TAGNAME: {{ github.sha }}
     needs: Unit
     steps:
       - name: Checkout
@@ -40,35 +41,46 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/epum_task004:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/epam_task:${{ TAGNAME }}
 
-  Deploy:
-    name: Deploy to EKS cluster
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+  # Deploy:
+  #   name: Deploy to EKS cluster
+  #   needs: Build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+  #   - name: Configure AWS credentials
+  #     uses: aws-actions/configure-aws-credentials@v1
+  #     with:
+  #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #       aws-region: us-east-2
     
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+  #   - name: Login to Amazon ECR
+  #     id: login-ecr
+  #     uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Configure k8s_epam
-      run: |
-        aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
+  #   - name: Configure k8s_epam
+  #     run: |
+  #       aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
 
-    - name: Update deployment k8s_epam
-      run: |
-        kubectl apply -f k8s/deployment.yml
+## deployment should works with external env
+## and each time with new docker tag
 
-    - name: Update service k8s_epam
-      run: |
-        kubectl apply -f k8s/service.yml
+    # - name: Update deployment k8s_epam
+    #   run: |
+    #     kubectl apply -f k8s/deployment.yml
+
+    # - name: Update service k8s_epam
+    #   run: |
+    #     kubectl apply -f k8s/service.yml
+
+
+    # - name: helm chart install
+    #   run: |
+    #     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    #     chmod 700 get_helm.sh
+    #     ./get_helm.sh
+    #     helm update epam-app app-HelmChart/ --set container.image=errbx/epam_task03:latest
