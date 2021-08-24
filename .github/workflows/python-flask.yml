@@ -36,12 +36,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push to Github regestry
-        TAGNAME: {{ github.sha }}
+        env:
+          IMAGE_TAG: {{ github.sha }}
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/epam_task:${{ TAGNAME }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/epam_task:${{ IMAGE_TAG }}
 
   # Deploy:
   #   name: Deploy to EKS cluster
