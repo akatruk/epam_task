@@ -7,20 +7,20 @@ on:
     branches: [ master ]
 
 jobs:
-  # Unit:
-  #   name: Unit test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #   - name: download python
-  #     run: | 
-  #       python -m pip install --upgrade pip
-  #       pip install flask yaml2 psycopg2
-  #       sudo apt-get --yes install python3-psycopg2 curl
-  #   - name: Run unittest
-  #     run: |
-  #       python test_show_result.py
+  Unit:
+    name: Unit test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: download python
+      run: | 
+        python -m pip install --upgrade pip
+        pip install flask yaml2 psycopg2
+        sudo apt-get --yes install python3-psycopg2 curl
+    - name: Run unittest
+      run: |
+        python test_show_result.py
 
   Build:
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
         chmod 700 get_helm.sh
         ./get_helm.sh
 
-    - name: Configure k8s_epam
+    - name: Update config k8s_epam
       run: |
         aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
 
