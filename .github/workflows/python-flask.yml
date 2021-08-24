@@ -91,4 +91,5 @@ jobs:
     #     ./get_helm.sh
 
     - name: Helm Chart update
+      run: |
         helm update epam-app app-HelmChart/ --set container.image=${{ secrets.DOCKERHUB_USERNAME }}/epam_task:latest
