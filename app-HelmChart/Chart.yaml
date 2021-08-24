@@ -1,0 +1,18 @@
+apiVersion: v2
+name: epam-app
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - python
+  - flask
+  - github actions
+  - aws
+  - terraform
+
+maintainers:
+  - name: Katruk Andrei
+    email: a.katruk@live.com
+    url: epam_task.katruk.ru
