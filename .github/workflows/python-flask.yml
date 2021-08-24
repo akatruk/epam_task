@@ -82,7 +82,7 @@ jobs:
     
     - name: Helm Chart update
       run: |
-        helm upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:latest
+        helm upgrade epam-app app-HelmChart/
 
   #   - name: Configure k8s_epam
   #     run: |
