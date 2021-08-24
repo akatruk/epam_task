@@ -28,13 +28,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Login to Docker Hub
+      
+      - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
+
       #   name: define enviroments
       #   run: |
       #    echo "IMAGE_TAG=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
@@ -43,7 +43,7 @@ jobs:
       #   run: |
       #    echo errbx/epam:$IMAGE_TAG
       
-        name: Build and push to Github regestry
+      - name: Build and push to Github regestry
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -68,6 +68,12 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+
+    - name: helm chart install
+      run: |
+        curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+        chmod 700 get_helm.sh
+        ./get_helm.sh
 
     - name: Helm Chart update
       run: |
