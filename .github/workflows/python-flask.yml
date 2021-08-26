@@ -70,11 +70,15 @@ jobs:
       run: |
         aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
 
+    # - name: Upgrade release
+    #   uses: hiberbee/github-action-helm@latest
+    #   with:
+    #     helm-command: upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
+
     - name: Upgrade release
-      uses: hiberbee/github-action-helm@latest
-      with:
-        helm-command: upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
-    
+      run: |
+        helm upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
+
     # - name: Helm Chart update
     #   run: |
     #     helm upgrade epam-app app-HelmChart/
