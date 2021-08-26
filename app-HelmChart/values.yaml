@@ -1,4 +1,3 @@
       containers:
-          image: 
-             tag: latest
-      replicaCount: 3
+          image: errbx/epam_task:latest
+      replicaCount: 2
