@@ -77,7 +77,7 @@ jobs:
 
     - name: Upgrade release
       run: |
-        helm upgrade epam-app app-HelmChart/ --set container.image.tag=${{ env.IMAGE_TAG }}
+        helm upgrade epam-app app-HelmChart/ --set container.image.tag=${{ env.IMAGE_TAG }} --set replicaCount=2
 
     # - name: Helm Chart update
     #   run: |
