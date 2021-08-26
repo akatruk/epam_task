@@ -25,7 +25,7 @@ module "my-cluster" {
     {
       name = "group1"
       instance_type = var.instance_type
-      asg_max_size  = 2
-      asg_desired_capacity    = 2
+      asg_max_size  = var.k8s_nodes_count
+      asg_desired_capacity    = var.k8s_nodes_count
     }]
 }

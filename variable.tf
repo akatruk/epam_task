@@ -17,3 +17,4 @@ variable "rds_password" {}
 variable "cluster_name" {}
 variable "instance_type" {}
 variable "vpc_id" {}
+variable "k8s_nodes_count" {}
