@@ -12,4 +12,10 @@ test_show_result.py
 unittest: check to database PostgreSQL connectivity
 
 docker build -f dockerfile -t show_result .
-docker run -d -p 80:80 errbx/epam_task:1aab2c10372bcc33b22ca46223d6e9f49b66a740 --name task1 --network="host"
+docker push errbx/epam_task:latest1
+docker run -d -p 80:80 errbx/epam_task:latest1 --name task1 --network="host"
+helm install epam-app app-HelmChart/
+helm upgrade epam-app app-HelmChart/ --set container.image.tag=aa2dc18fe9887a02825435a01be432e1ca1dbe77
+ --set replicaCount=2
+helm upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:latest1
+ helm delete epam-app app-HelmChart/ 

@@ -4,9 +4,9 @@ env:
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   Unit:
@@ -45,7 +45,6 @@ jobs:
           push: true
           tags: errbx/epam_task:${{ env.IMAGE_TAG }}
 
-
   Deploy:
     name: Deploy from Docker hub registry
     needs: Build
@@ -72,34 +71,4 @@ jobs:
     - name: Upgrade release
       uses: hiberbee/github-action-helm@latest
       with:
-        helm-command: upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
-
-    # - name: Upgrade release
-    #   run: |
-    #     helm upgrade epam-app app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
-
-
-    # - name: Helm Chart update
-    #   run: |
-    #     helm upgrade epam-app app-HelmChart/
-
-  #   - name: Configure k8s_epam
-  #     run: |
-  #       aws eks --region eu-west-3 update-kubeconfig --name k8s_epam
-
-## deployment should works with external env
-## and each time with new docker tag
-
-    # - name: Update deployment k8s_epam
-    #   run: |
-    #     kubectl apply -f k8s/deployment.yml
-
-    # - name: Update service k8s_epam
-    #   run: |
-    #     kubectl apply -f k8s/service.yml
-
-    # - name: helm chart install
-    #   run: |
-    #     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-    #     chmod 700 get_helm.sh
-    #     ./get_helm.sh
+        helm-command: upgrade epam-dev app-HelmChart/ --set container.image=errbx/epam_task:${{ env.IMAGE_TAG }}
